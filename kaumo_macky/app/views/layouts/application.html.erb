@@ -26,18 +26,22 @@
 				<ul class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
 
 					
-		  		Logged in as <strong><%= current_user.email %></strong>
-		  			<li><%= link_to 'イベントを作る', edit_user_registration_path%></li>
+		  		
+					Logged in as <strong><%= current_user.email %></strong>
+		  			<li><%= link_to 'イベントを作る', new_event_path%></li>
   					<li><%= link_to 'プロフィール編集', edit_user_registration_path%> </li>
  			 		<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete%></li>
 				</ul>
+			</div>
 		<% else %>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapser-1">
 				<ul class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
 
  			 		<li><%= link_to "新規登録", new_user_registration_path %> </li>
   					<li><%= link_to "ログイン", new_user_session_path %></li>
   				</ul>
   			</div>
+  			
 		<% end %>
 
 
