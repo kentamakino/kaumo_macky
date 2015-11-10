@@ -17,8 +17,13 @@
 		
 
 			<div class="panel-body">
-				<%= @event.owner.username%>
-				<%= "#{@event.owner.username}"%>
+				<%if @event.owner%>
+					<%= @event.owner.username%>
+					<%= "#{@event.owner.username}"%>
+				<%else%>
+					退会したユーザーです
+				<%end%>
+
 			</div>
 		</div>
 	
@@ -69,7 +74,15 @@
 		<%end%>
 
 
-		<% if user_signed_in? %> 
+
+		
+		<%if @ticket %>
+		
+		<%= link_to '参加をキャンセルする',event_ticket_path(@event,@ticket),method: :delete,class: 'btn btn-warning btn-lg btn-block'%>
+
+		<%elsif user_signed_in?%>
+
+		 
 			<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#createTicket">
 				参加する
 			</button>
@@ -104,6 +117,26 @@
 		<%= link_to '参加する',new_event_ticket_path(@event),class:"btn btn-primary btn-lg btn-block"%>
 
 		<%end%>
+
+
+		<hr>
+			<div class="panel panel-dafault">
+				<div class="panel-heading">
+					参加者
+				</div>
+
+			
+				<div class ="panel-body">
+					<ul class="list-unstyled">
+			 			<% @tickets.each do |ticket|%>
+			 				<li>
+			 				
+				 				<%=ticket.comment%>
+				 			</li>
+				 		<%end%>
+					</ul>
+				</div>
+			</div>
 
 	</div>	
 </div>
